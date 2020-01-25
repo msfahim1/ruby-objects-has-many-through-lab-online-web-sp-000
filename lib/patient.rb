@@ -1,6 +1,5 @@
 class Patient
-  #has many appointments
-  #has many doctors through appointments
+
   attr_reader :name
   @@all = []
 
@@ -33,4 +32,4 @@ class Patient
     Doctor.find_by_specialty(spec)
   end
 
-end 
+end
