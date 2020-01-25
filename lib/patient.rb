@@ -1,6 +1,7 @@
-class Patient
-
-  attr_accessor :name, :appointment, :doctor
+class Patient 
+  #has many appointments 
+  #has many doctors through appointments
+  attr_reader :name
   @@all = []
 
   def initialize(name)
@@ -8,20 +9,28 @@ class Patient
     @@all << self
   end
 
-  def self.all
-    @@all
+  def self.all 
+    @@all 
   end
 
-  def appointments
-    Appointment.all.select {|appointment| appointment.patient == self}
+  def appointments 
+    Appointment.all.select do |appt| 
+      appt.patient == self 
+    end
+  end
+ 
+  def schedule_appointment(doctor, time)
+    Appointment.new(self, doctor, date='tbd', time)
   end
 
-  def doctors
-    appointments.collect {|appointment| appointment.doctor}
+  def self.find_by_name(patient_name)
+    self.all.find do |patient|
+      patient.name == patient_name
+    end
   end
 
-  def new_appointment(doctor, date)
-    Appointment.new(self, date, doctor)
+  def find_doc(spec)
+    Doctor.find_by_specialty(spec)
   end
 
-end
+end 
