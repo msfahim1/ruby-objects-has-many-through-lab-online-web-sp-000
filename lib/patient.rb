@@ -1,5 +1,5 @@
-class Patient 
-  #has many appointments 
+class Patient
+  #has many appointments
   #has many doctors through appointments
   attr_reader :name
   @@all = []
@@ -9,16 +9,16 @@ class Patient
     @@all << self
   end
 
-  def self.all 
-    @@all 
+  def self.all
+    @@all
   end
 
-  def appointments 
-    Appointment.all.select do |appt| 
-      appt.patient == self 
+  def appointments
+    Appointment.all.select do |appt|
+      appt.patient == self
     end
   end
- 
+
   def schedule_appointment(doctor, time)
     Appointment.new(self, doctor, date='tbd', time)
   end
